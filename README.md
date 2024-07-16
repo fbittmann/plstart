@@ -6,7 +6,7 @@ Installation
 ============
 
 ``` stata
-. net install benchmark, from(https://raw.github.com/fbittmann/plstart/stable) replace
+. net install plstart, from(https://raw.github.com/fbittmann/plstart/stable) replace
 ```
 
 Examples
