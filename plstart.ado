@@ -11,6 +11,8 @@ program define plstart, rclass
 		local new = round(runiform() * 999999)
 		local  rvalues `rvalues' `new'
 	}
+	di "Seeds:"
+    	di "`rvalues'"
 	return local plseeds "`rvalues'"
 end
 
