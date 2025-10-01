@@ -1,27 +1,19 @@
 
-*Felix Bittmann, 2024
 
-cap program drop plstart
+!* version 1.1 October 1, 2025 FB
 program define plstart, rclass
-	syntax, threads(integer) seed(integer) [force]
+	syntax, Threads(integer) Seed(integer) [force]
 	parallel initialize `threads', `force'
 	set seed `seed'
-	local rvalues ""
+	local rvalues 
 	forvalues i = 1/`threads' {
-		local new = round(runiform() * 999999)
-		local  rvalues `rvalues' `new'
+		while 1 {
+			local new = round(runiform() * 999999)
+			if strpos("`rvalues'", "`new'") == 0 {
+				local rvalues `rvalues' `new'
+				continue, break
+			}
+		}
 	}
-	di "Seeds:"
-    	di "`rvalues'"
-	return local plseeds "`rvalues'"
+	return local plseed `rvalues'
 end
-
-
-
-/*EXAMPLE
-sysuse auto, clear
-plstart, threads(2) seed(454)
-di "`r(rseeds)'"
-parallel bs, reps(4000) seed("`r(plseeds)'"): reg mpg weight
-estat bootstrap, bc
-*/
