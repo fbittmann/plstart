@@ -18,7 +18,7 @@ Setup and minimal example
 sysuse nlsw88, clear
 plstart, threads(4) seed(123) force
 di r(plseed)
-parallel bs, reps(30) seed(`r(plseed)'): reg wage
+parallel bs, reps(40) seed(`r(plseed)'): reg wage
 estat bootstrap, bc
 ```
 
