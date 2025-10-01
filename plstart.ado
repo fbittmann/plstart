@@ -1,5 +1,3 @@
-
-
 !* version 1.1 October 1, 2025 FB
 program define plstart, rclass
 	syntax, Threads(integer) Seed(integer) [force]
