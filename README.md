@@ -15,10 +15,10 @@ Examples
 Setup and minimal example
 -------------------------
 ``` stata
-sysuse auto, clear
-plstart, threads(2) seed(454)
-di "`r(rseeds)'"
-parallel bs, reps(4000) seed("`r(plseeds)'"): reg mpg weight
+sysuse nlsw88, clear
+plstart, threads(4) seed(123) force
+di r(plseed)
+parallel bs, reps(40) seed(`r(plseed)'): reg wage
 estat bootstrap, bc
 ```
 
